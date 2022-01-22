@@ -1,7 +1,7 @@
 class Node:
     def __init__(self, data):
         self.data = data
-        self.children = {}
+        self.children = []
         self.parent = None
     
     @property
@@ -17,11 +17,9 @@ class Node:
 
     @property
     def json(self) -> dict:
-        data = {"title": self.data, "content": self.content, "tags": self.tags}
-        if not self.childless:
-            data.update({"children": []})
-            for child in self.children.values():
-                data.get("children").append(child.json)
+        data = {"title": self.data, "content": self.content, "tags": self.tags, "children": []}
+        for child in self.children:
+            data.get("children").append(child.json)
         return data
         
     def __str__(self) -> str:
@@ -35,9 +33,8 @@ class Node:
             display_string = str(self)
         else:
             display_string = "\n" + indent * " " + "\u2514" + str(self)
-        for child in self.children.values():
+        for child in self.children:
             display_string += child.node_display(indent + 1)
-
         return display_string
     
     def set_parent(self, parent) -> bool:
@@ -48,15 +45,12 @@ class Node:
         if child in self.children:
             return False
         child.set_parent(self)
-        self.children.update({child.data: child})
+        self.children.append(child)
         return True
-        
-    def get_child(self, child):
-        return self.children.get(child, None)
         
     def remove_child(self, child):
         try:
-            self.children.pop(child.data)
+            self.children.remove(child)
         except KeyError:
             return False
         else:
