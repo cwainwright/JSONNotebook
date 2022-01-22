@@ -1,28 +1,27 @@
-from logging import root
-from formatters import node_display
+from json import dump, load
+
 from objects import Note
 from toolset import options_menu
-from json import load, dump
+
 
 def build_notebook(note: Note = None, data: list = None):
     # If no data is provided, load from file
-    if data is None:
+    if note is None:
         with open("notebook.json", "r") as f:
             data = load(f)
         note = Note("root")
-        build_notebook(note, data[0].get("children"))
+        build_notebook(note, data[0].get("children", []))
         return note
-
     # Otherwise recursively build the notebook from data
     else:
         for child_d in data:
-            child = Note(child_d.get("title"), child_d.get("content"), child_d.get("tags"))
+            child = Note(child_d.get("title", ""), child_d.get("content", ""), child_d.get("tags", []))
             note.add_child(child)
-            build_notebook(child, child_d.get("children"))
+            build_notebook(child, child_d.get("children", []))
 
 def save_notebook(note: Note):
     with open("notebook.json", "w") as f:
-        dump(note.json, f)
+        dump([note.json], f, indent=4)
     return note
 
 def display_notebook(note: Note):
@@ -53,8 +52,7 @@ def note_commands(note: Note):
         "Delete": note.delete_note,
         "Back": note
     }
-    options_menu(options)
-    return note
+    return options_menu(options)
 
 def navigate_commands(note: Note):
     print(f"\nNavigation commands (current note {note.path}): ")
