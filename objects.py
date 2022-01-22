@@ -1,10 +1,10 @@
 from tree import Node
 from toolset import options_menu
 
-deletable_paths = []
-
 class Note(Node):
+    """Note, inherits from Node"""
     def __init__(self, title, content = None, tags = None):
+        """Initialize a new note"""
         super().__init__(title)
         self.content = content
         if content is None: self.content = ""
@@ -12,6 +12,7 @@ class Note(Node):
         if tags is None: self.tags = []
         
     def new_note(self):
+        """Create a new child note"""
         title = input("Enter a title for the new note: ")
         while title in self.children:
             print("Title already in use.")
@@ -21,9 +22,12 @@ class Note(Node):
         tags = input("Enter the tags for the new note (separated by commas): ")
         tags = tags.split(",")
         map(lambda x: x.strip(" ").replace(" ", "-"), tags)
-        self.add_child(Note(title, content, tags))
+        child = Note(title, content, tags)
+        self.add_child(child)
+        return child
     
     def select_child(self):
+        """Select a child note"""
         if self.childless:
             print(f"{self.data} has no children to select")
             return self
@@ -31,12 +35,14 @@ class Note(Node):
         return options_menu(self.children)
     
     def open_note(self):
-        print(f"Title: {self.data}")
+        """Display contents of note"""
+        print(f"\nTitle: {self.data}")
         print(f"Content:\n{self.content}")
         print(f"Tags: {self.tags}")
         return self
      
     def edit_note(self):
+        """Edit note contents"""
         print(f"Edit Note: ({self.data})")
         options = {
             "title": self.change_title,
@@ -47,14 +53,17 @@ class Note(Node):
         return self
         
     def change_title(self):
+        """Change the title of the note"""
         self.data = input(f"Old:{self.data}\nNew: ")
         return self
         
     def change_content(self):
+        """Change the content of the note"""
         self.content = input(f"Old:\n{self.content}\nNew: ")
         return self
         
     def change_tags(self):
+        """Change the tags of the note"""
         tags = input(f"Old:\n{self.tags}\nNew: ")
         tags = tags.split(",")
         map(lambda x: x.strip(" ").replace(" ", "-"), tags)
@@ -62,17 +71,17 @@ class Note(Node):
         return self
         
     def delete_note(self):
+        """"Delete the note (get the parent to delete the child)"""
         self.parent.remove_child(self)
-        return self
+        return self.parent
 
 if __name__ == "__main__":
     root = Note("root", "root content", ["root", "tag"])
     root.add_child(Note("child 1", "child 1 content", ["child", "tag"]))
-    root.add_child(Note("child 2", "child 2 content", ["child", "tag"]))
-    root.get_child("child 1").add_child(Note("grandchild 1", "grandchild 1 content", ["grandchild", "tag"]))
-    root.get_child("child 1").get_child("grandchild 1").add_child(Note("great grandchild 1", "great grandchild 1 content", ["great grandchild", "tag"]))
-    # display_notebook(root)
-    root.get_child("child 1").get_child("grandchild 1").get_child("great grandchild 1").delete_note()
-    root.get_child("child 2").delete_note()
-    print(deletable_paths)
+    child = Note("child 2", "child 2 content", ["child", "tag"])
+    child.add_child(Note("grandchild 1", "grandchild 1 content", ["grandchild", "tag"]))
+    child.add_child(Note("grandchild 2", "grandchild 2 content", ["grandchild", "tag"]))
+    root.add_child(
+        child
+    )
     print(root.node_display())
