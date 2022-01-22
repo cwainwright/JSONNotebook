@@ -1,6 +1,6 @@
 from os import name, system
 
-from commands import Note, build_notebook, display_commands, display_notebook
+from commands import build_notebook, display_commands, display_notebook
 
 def main():
     system('cls' if name == 'nt' else 'clear')

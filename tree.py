@@ -30,6 +30,16 @@ class Node:
     def __repr__(self) -> str:
         return str(self.path)
     
+    def node_display(self, indent = 0) -> str:
+        if not indent:
+            display_string = str(self)
+        else:
+            display_string = "\n" + indent * " " + "\u2514" + str(self)
+        for child in self.children.values():
+            display_string += child.node_display(indent + 1)
+
+        return display_string
+    
     def set_parent(self, parent) -> bool:
         self.parent = parent
         return True
@@ -51,13 +61,3 @@ class Node:
             return False
         else:
             return True
-        
-    def node_display(self, indent = 0) -> str:
-        if not indent:
-            display_string = str(self)
-        else:
-            display_string = "\n" + indent * " " + "\u2514" + str(self)
-        for child in self.children.values():
-            display_string += child.node_display(indent + 1)
-
-        return display_string
