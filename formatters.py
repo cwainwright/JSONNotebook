@@ -1,4 +1,6 @@
+
 def node_display(node, indent = 0) -> str:
+    """Display node and its children"""
     if not indent:
         display_string = str(node)
     else:
