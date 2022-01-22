@@ -1,0 +1,47 @@
+[
+    {
+        "title": "root",
+        "content": "",
+        "tags": [],
+        "children": [
+            {
+                "title": "child1",
+                "content": "",
+                "tags": [],
+                "children": [
+                    {
+                        "title": "grandchild1",
+                        "content": "",
+                        "tags": [],
+                        "children": []
+                    },
+                    {
+                        "title": "grandchild2",
+                        "content": "",
+                        "tags": [],
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "title": "child2",
+                "content": "",
+                "tags": [],
+                "children": [
+                    {
+                        "title": "grandchild3",
+                        "content": "",
+                        "tags": [],
+                        "children": []
+                    },
+                    {
+                        "title": "grandchild4",
+                        "content": "",
+                        "tags": [],
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]
