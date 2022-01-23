@@ -23,6 +23,10 @@ def save_notebook(note: Note):
         dump([note.json], f, indent=4)
     return note
 
+def create_notebook():
+    template_notebook = Note("root")
+    save_notebook(template_notebook)
+
 def display_notebook(note: Note):
     # Clear screen
     clear_screen()
