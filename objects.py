@@ -41,6 +41,7 @@ class Note(Node):
         print(f"\nTitle: {self.data}")
         print(f"Content:\n{self.content}")
         print(f"Tags: {self.tags}")
+        input("Press enter to continue...")
         return self
      
     def edit_note(self):
