@@ -43,7 +43,7 @@ def display_commands(note: Note):
     else:
         options = {
             "Note Commands": note_commands,
-            "Navigate Commands": navigate_commands,
+            "Navigation Commands": navigate_commands,
             "Quit": "quit"
         }
         return options_menu(options, note)
