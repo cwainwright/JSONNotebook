@@ -51,7 +51,7 @@ def display_commands(note: Note):
 
 def note_commands(note: Note):
     clear_screen()
-    print(f"\nCommands (current note {note.path}): ")
+    print(f"\nNote Commands (current note {note.path}): ")
     options = {
         "New": note.new_note,
         "Open": note.open_note,
