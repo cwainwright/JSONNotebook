@@ -1,7 +1,7 @@
 from json import dump, load
 
-from objects import Note
-from toolset import options_menu, clear_screen
+from objects import Note, clear_screen, options_menu
+
 
 def build_notebook(note: Note = None, data: list = None):
     # If no data is provided, load from file

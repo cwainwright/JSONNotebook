@@ -1,5 +1,5 @@
-from inspect import Attribute
-from toolset import options_menu, Node, clear_screen
+from toolset import Node, clear_screen, options_menu
+
 
 class Note(Node):
     """Note, inherits from Node"""
