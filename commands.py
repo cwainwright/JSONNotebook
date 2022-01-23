@@ -30,7 +30,7 @@ def create_notebook():
 def display_notebook(note: Note):
     # Clear screen
     clear_screen()
-    print(f"\nNotebook: ")
+    print(f"\nNotebook: {note}")
     print(note.node_display())
     
 def display_commands(note: Note):
@@ -44,7 +44,6 @@ def display_commands(note: Note):
         options = {
             "Note Commands": note_commands,
             "Navigate Commands": navigate_commands,
-            "Show Tree": node_display,
             "Quit": "quit"
         }
         return options_menu(options, note)
