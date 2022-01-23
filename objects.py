@@ -1,5 +1,4 @@
-from tree import Node
-from toolset import options_menu
+from toolset import options_menu, Node, clear_screen
 
 class Note(Node):
     """Note, inherits from Node"""
@@ -28,6 +27,7 @@ class Note(Node):
     
     def select_child(self):
         """Select a child note"""
+        clear_screen()
         if self.childless:
             print(f"{self.data} has no children to select")
             return self
@@ -36,6 +36,7 @@ class Note(Node):
     
     def open_note(self):
         """Display contents of note"""
+        clear_screen()
         print(f"\nTitle: {self.data}")
         print(f"Content:\n{self.content}")
         print(f"Tags: {self.tags}")
@@ -43,6 +44,7 @@ class Note(Node):
      
     def edit_note(self):
         """Edit note contents"""
+        clear_screen()
         print(f"Edit Note: ({self.data})")
         options = {
             "title": self.change_title,
