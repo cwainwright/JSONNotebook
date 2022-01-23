@@ -1,8 +1,7 @@
 from json import dump, load
 
 from objects import Note
-from toolset import options_menu
-
+from toolset import options_menu, clear_screen
 
 def build_notebook(note: Note = None, data: list = None):
     # If no data is provided, load from file
@@ -25,10 +24,14 @@ def save_notebook(note: Note):
     return note
 
 def display_notebook(note: Note):
+    # Clear screen
+    clear_screen()
     print(f"\nNotebook: ")
     print(note.node_display())
     
 def display_commands(note: Note):
+    clear_screen()
+    display_notebook(note)
     try:
         print(f"\nCommands (current note {note.path}): ")
     except AttributeError:
@@ -43,6 +46,7 @@ def display_commands(note: Note):
     
 
 def note_commands(note: Note):
+    clear_screen()
     print(f"\nCommands (current note {note.path}): ")
     options = {
         "New": note.new_note,
@@ -55,6 +59,7 @@ def note_commands(note: Note):
     return options_menu(options)
 
 def navigate_commands(note: Note):
+    clear_screen()
     print(f"\nNavigation commands (current note {note.path}): ")
     options = {
         "Up": note.parent,
