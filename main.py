@@ -2,9 +2,11 @@ from pathlib import Path
 
 from commands import (
     build_notebook,
+    create_notebook,
     display_commands,
     display_notebook,
-    save_notebook
+    save_notebook,
+    create_notebook
 )
 
 
@@ -13,8 +15,7 @@ def main():
     # If notebook does not exist, create it
     if not Path.exists(Path(__file__).parent / "notebook.json"):
         print("Notebook does not exist, creating new from template")
-        template_notebook = {"title": "root", "content": "", "tags": [], "children": []}
-        save_notebook(template_notebook)
+        create_notebook()
     # Rebuilding notebook
     root = build_notebook()
     current_note = None
