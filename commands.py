@@ -63,7 +63,7 @@ def note_commands(note: Note):
 
 def navigate_commands(note: Note):
     clear_screen()
-    print(f"\nNavigation commands (current note {note.path}): ")
+    print(f"\nNavigation Commands (current note {note.path}): ")
     options = {
         "Up": note.parent,
         "Down": note.select_child,
