@@ -95,19 +95,3 @@ def options_menu(menu: Union[list, dict], arguments = None):
 def clear_screen():
     """Clear screen for Windows and Linux"""
     system('cls' if name == 'nt' else 'clear')
-
-if __name__ == "__main__":
-    
-    # Standard data selection menu
-    options = ["option 1", "option 2", "option 3", "option 4"]
-    print(options_menu(options))
-    
-    # Function selection demonstration
-    def lol_one():
-        print("we are number one")
-        
-    def lol_two():
-        print("we are number two")
-
-    options = {"option 1": lol_one, "option 2": lol_two}
-    options_menu(options)()
