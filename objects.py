@@ -1,3 +1,4 @@
+from inspect import Attribute
 from toolset import options_menu, Node, clear_screen
 
 class Note(Node):
@@ -74,8 +75,11 @@ class Note(Node):
         
     def delete_note(self):
         """"Delete the note (get the parent to delete the child)"""
-        self.parent.remove_child(self)
-        return self.parent
+        try:
+            self.parent.remove_child(self)
+            return self.parent
+        except AttributeError:
+            return self
 
 if __name__ == "__main__":
     root = Note("root", "root content", ["root", "tag"])
