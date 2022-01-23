@@ -44,6 +44,7 @@ def display_commands(note: Note):
         options = {
             "Note Commands": note_commands,
             "Navigate Commands": navigate_commands,
+            "Show Tree": note.node_display,
             "Quit": "quit"
         }
         return options_menu(options, note)
@@ -55,7 +56,6 @@ def note_commands(note: Note):
     options = {
         "New": note.new_note,
         "Open": note.open_note,
-        "Show Tree": note.node_display,
         "Edit": note.edit_note,
         "Delete": note.delete_note,
         "Back": note
