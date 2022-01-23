@@ -1,14 +1,14 @@
 from json import dump, load
 
 from objects import Note
-from toolset import options_menu, clear_screen, node_display
+from toolset import options_menu, clear_screen
 
 def build_notebook(note: Note = None, data: list = None):
     # If no data is provided, load from file
     if note is None:
         with open("notebook.json", "r") as f:
             data = load(f)
-        note = Note("root")
+        note = Note(data[0].get("title"))
         build_notebook(note, data[0].get("children", []))
         return note
     # Otherwise recursively build the notebook from data
