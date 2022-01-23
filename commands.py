@@ -1,7 +1,7 @@
 from json import dump, load
 
 from objects import Note
-from toolset import options_menu, clear_screen
+from toolset import options_menu, clear_screen, node_display
 
 def build_notebook(note: Note = None, data: list = None):
     # If no data is provided, load from file
@@ -44,7 +44,7 @@ def display_commands(note: Note):
         options = {
             "Note Commands": note_commands,
             "Navigate Commands": navigate_commands,
-            "Show Tree": note.node_display,
+            "Show Tree": node_display,
             "Quit": "quit"
         }
         return options_menu(options, note)
